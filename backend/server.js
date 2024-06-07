@@ -24,9 +24,9 @@ mongoose
   .then(() => {
     mongoose.connection.useDb("ticTacToeDB");
     app.listen(process.env.PORT, () => {
-      // console.log(
-      //   `Listening on port ${process.env.PORT} and connected to MongoDB`
-      // );
+      console.log(
+        `Listening on port ${process.env.PORT} and connected to MongoDB`
+      );
     });
   })
   .catch((error) => {
