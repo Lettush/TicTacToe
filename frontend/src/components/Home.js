@@ -21,27 +21,28 @@ const Home = () => {
     <div className="home">
       <Link to="/game">Start New Game</Link>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="games">Loading...</div>
       ) : (
         <div className="games">
+          <h2>Recent Games</h2>
           {games &&
             games.map((game) => (
               <div className="game-card">
                 <ul>
                   <h3>{game.playerOne.name}</h3>
                   <div>
-                    <li>Wins: {game.playerOne.wins}</li>
-                    <li>Losses: {game.playerOne.losses}</li>
-                    <li>Draws: {game.playerOne.draws}</li>
+                    <li>W: {game.playerOne.wins}</li>
+                    <li>L: {game.playerOne.losses}</li>
+                    <li>D: {game.playerOne.draws}</li>
                   </div>
                 </ul>
 
                 <ul>
                   <h3>{game.playerTwo.name}</h3>
                   <div>
-                    <li>Wins: {game.playerTwo.wins}</li>
-                    <li>Losses: {game.playerTwo.losses}</li>
-                    <li>Draws: {game.playerTwo.draws}</li>
+                    <li>W: {game.playerTwo.wins}</li>
+                    <li>L: {game.playerTwo.losses}</li>
+                    <li>D: {game.playerTwo.draws}</li>
                   </div>
                 </ul>
               </div>

@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav>
       <div>
-        <h1>Tic Tac Toe</h1>
+        <Link to="/">Tic Tac Toe</Link>
       </div>
     </nav>
   );
