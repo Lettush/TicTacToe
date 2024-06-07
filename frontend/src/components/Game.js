@@ -1,5 +1,5 @@
 import { Board } from "./gameParts/Board";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import ScoreBoard from "./gameParts/ScoreBoard";
 import { useNavigate } from "react-router-dom";
 
@@ -78,7 +78,7 @@ const Game = () => {
     // Edge case for winner at last box
     if (draw) {
       setGameOver(true);
-      return(draw);
+      return draw;
     }
   };
 
@@ -89,26 +89,29 @@ const Game = () => {
 
   const endGame = async () => {
     try {
-      const response = await fetch("https://tic-tac-toe-backend-server.vercel.app/api/games/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          playerOne: {
-            name: players.playerOneName,
-            wins: scores.xScore,
-            losses: scores.oScore,
-            draws: scores.draw,
+      const response = await fetch(
+        "https://tic-tac-toe-backend-server.vercel.app/api/games/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-          playerTwo: {
-            name: players.playerTwoName,
-            wins: scores.oScore,
-            losses: scores.xScore,
-            draws: scores.draw,
-          },
-        }),
-      });
+          body: JSON.stringify({
+            playerOne: {
+              name: players.playerOneName,
+              wins: scores.xScore,
+              losses: scores.oScore,
+              draws: scores.draw,
+            },
+            playerTwo: {
+              name: players.playerTwoName,
+              wins: scores.oScore,
+              losses: scores.xScore,
+              draws: scores.draw,
+            },
+          }),
+        }
+      );
 
       if (response.ok) {
         navigate("/");
@@ -120,8 +123,12 @@ const Game = () => {
 
   const setNames = () => {
     setPlayers({
-      playerOneName: playerOneElement.current.value,
-      playerTwoName: playerTwoElement.current.value,
+      playerOneName: playerOneElement.current.value
+        ? playerOneElement.current.value
+        : "X",
+      playerTwoName: playerTwoElement.current.value
+        ? playerOneElement.current.value
+        : "O",
     });
     setRegistered(true);
   };
@@ -141,12 +148,26 @@ const Game = () => {
               <button onClick={resetBoard}>Continue</button>
               <button onClick={endGame}>Stop</button>
             </div>
-          )}{" "}
+          )}
         </>
       ) : (
         <form>
-          <input type="text" ref={playerOneElement} />
-          <input type="text" ref={playerTwoElement} />
+          <label htmlFor="playerOne">Player 1</label>
+          <input
+            type="text"
+            ref={playerOneElement}
+            id="playerOne"
+            placeholder="X"
+            required
+          />
+          <label htmlFor="playerTwo">Player 2</label>
+          <input
+            type="text"
+            ref={playerTwoElement}
+            id="playerTwo"
+            placeholder="O"
+            required
+          />
           <button onClick={setNames}>Start</button>
         </form>
       )}

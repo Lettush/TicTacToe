@@ -1,7 +1,9 @@
 const Navbar = () => {
   return (
     <nav>
-      <div>Tic Tac Toe</div>
+      <div>
+        <h1>Tic Tac Toe</h1>
+      </div>
     </nav>
   );
 };
