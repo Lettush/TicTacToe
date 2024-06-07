@@ -103,8 +103,8 @@ const Game = () => {
           },
           playerTwo: {
             name: players.playerTwoName,
-            wins: scores.xScore,
-            losses: scores.oScore,
+            wins: scores.oScore,
+            losses: scores.xScore,
             draws: scores.draw,
           },
         }),
