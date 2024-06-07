@@ -60,6 +60,7 @@ const Game = () => {
   };
 
   const calculateWinner = (squares) => {
+    let draw = false;
     for (let i = 0; i < winConditions.length; i++) {
       const [a, b, c] = winConditions[i];
       if (
@@ -70,9 +71,14 @@ const Game = () => {
         setGameOver(true);
         return squares[a];
       } else if (!squares.includes(null)) {
-        setGameOver(true);
-        return "draw";
+        draw = true;
       }
+    }
+
+    // Edge case for winner at last box
+    if (draw) {
+      setGameOver(true);
+      return(draw);
     }
   };
 
