@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// Logger
+// MiddleWare
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -15,6 +15,7 @@ app.use((req, res, next) => {
   }
   next();
 });
+app.use(cors());
 
 // Routes
 app.use("/api/games", require("./src/routes/game"));

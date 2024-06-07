@@ -5,13 +5,7 @@ const Home = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetch("https://tic-tac-toe-backend-server.vercel.app/api/games", {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET",
-      },
-    })
+    fetch("https://tic-tac-toe-backend-server.vercel.app/api/games")
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
         else return response.json();
