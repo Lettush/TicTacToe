@@ -83,26 +83,31 @@ const Game = () => {
 
   const endGame = async () => {
     try {
-      const response = await fetch("https://tic-tac-toe-backend-server.vercel.app/api/games/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          playerOne: {
-            name: players.playerOneName,
-            wins: scores.xScore,
-            losses: scores.oScore,
-            draws: scores.draw,
+      const response = await fetch(
+        "https://tic-tac-toe-backend-server.vercel.app/api/games/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST",
           },
-          playerTwo: {
-            name: players.playerTwoName,
-            wins: scores.xScore,
-            losses: scores.oScore,
-            draws: scores.draw,
-          },
-        }),
-      });
+          body: JSON.stringify({
+            playerOne: {
+              name: players.playerOneName,
+              wins: scores.xScore,
+              losses: scores.oScore,
+              draws: scores.draw,
+            },
+            playerTwo: {
+              name: players.playerTwoName,
+              wins: scores.xScore,
+              losses: scores.oScore,
+              draws: scores.draw,
+            },
+          }),
+        }
+      );
 
       if (response.ok) {
         navigate("/");
