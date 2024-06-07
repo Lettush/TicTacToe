@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -15,7 +16,16 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(cors());
+
+// CORS for querying different domains
+const corsOpts = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET','POST','DELETE'],
+  allowedHeaders: ['Content-Type'],
+  exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
 
 // Routes
 app.use("/api/games", require("./src/routes/game"));
