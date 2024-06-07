@@ -5,7 +5,7 @@ const Home = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetch("/api/games")
+    fetch("https://tic-tac-toe-backend-server.vercel.app/api/games")
       .then((response) => {
         if (!response.ok) throw new Error(response.status);
         else return response.json();

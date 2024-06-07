@@ -83,7 +83,7 @@ const Game = () => {
 
   const endGame = async () => {
     try {
-      const response = await fetch("/api/games/", {
+      const response = await fetch("https://tic-tac-toe-backend-server.vercel.app/api/games/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
