@@ -2,6 +2,11 @@ import { Board } from "./gameParts/Board";
 import { useState, useRef } from "react";
 import ScoreBoard from "./gameParts/ScoreBoard";
 import { useNavigate } from "react-router-dom";
+// MUI
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const Game = () => {
   const winConditions = [
@@ -25,6 +30,7 @@ const Game = () => {
     playerOneName: "",
     playerTwoName: "",
   });
+  const [open, setOpen] = useState(false);
 
   const playerOneElement = useRef(null);
   const playerTwoElement = useRef(null);
@@ -121,6 +127,9 @@ const Game = () => {
     }
   };
 
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const setNames = () => {
     setPlayers({
       playerOneName: playerOneElement.current.value
@@ -133,8 +142,68 @@ const Game = () => {
     setRegistered(true);
   };
 
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "#f0ebd8",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const modalButtonStyle = {
+    border: "1px solid black",
+    margin: "10px",
+    backgroundColor: "black",
+    "&:hover": {
+      backgroundColor: "white",
+    },
+    color: "#f0ebd8",
+  };
+
   return (
     <>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Box
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              id="modal-modal-title"
+              variant="h6"
+              component="h2"
+              color="black"
+            >
+              Would you like to save and quit?
+            </Typography>
+            <Box style={{ marginTop: "20px" }}>
+              <Button
+                style={modalButtonStyle}
+                onClick={() => {
+                  endGame();
+                }}
+              >
+                Save
+              </Button>
+              <Button style={modalButtonStyle} onClick={handleClose}>
+                Cancel
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+      </Modal>
       {registered ? (
         <>
           <ScoreBoard scores={scores} xTurn={xTurn} players={players} />
@@ -144,9 +213,13 @@ const Game = () => {
             disabled={gameOver}
           />
           {gameOver && (
-            <div>
-              <button onClick={resetBoard}>Continue</button>
-              <button onClick={endGame}>Stop</button>
+            <div className="buttons">
+              <button type="button" onClick={resetBoard}>
+                Continue
+              </button>
+              <button type="button" onClick={handleOpen}>
+                Stop
+              </button>
             </div>
           )}
         </>
@@ -168,7 +241,9 @@ const Game = () => {
             placeholder="O"
             required
           />
-          <button onClick={setNames}>Start</button>
+          <button type="button" onClick={setNames}>
+            Start
+          </button>
         </form>
       )}
     </>

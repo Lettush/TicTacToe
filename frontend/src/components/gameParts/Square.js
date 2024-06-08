@@ -2,7 +2,7 @@
 const Square = ({ value, squareEvent, disabled }) => {
   const style = value === "X" ? "box-x" : "box-o";
   return (
-    <button className={style} onClick={squareEvent} disabled={disabled} >
+    <button type="button" className={style} onClick={squareEvent} disabled={disabled} >
       {value}
     </button>
   );
