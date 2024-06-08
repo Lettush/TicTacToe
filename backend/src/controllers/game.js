@@ -19,7 +19,7 @@ const createGame = async (req, res) => {
 // Get All Games
 const getRecentGames = async (req, res) => {
   try {
-    const games = await Game.find({ sort: { createdAt: -1 } }).limit(5);
+    const games = await Game.find().sort({createdAt: -1}).limit(5);
 
     res.status(200).json(games);
   } catch (error) {
