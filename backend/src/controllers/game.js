@@ -17,6 +17,16 @@ const createGame = async (req, res) => {
 };
 
 // Get All Games
+const getRecentGames = async (req, res) => {
+  try {
+    const games = await Game.find({ sort: { created_at: -1 } }).limit(5);
+
+    res.status(200).json(games);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const getAllGames = async (req, res) => {
   try {
     const games = await Game.find();
@@ -59,6 +69,7 @@ const deleteGame = async (req, res) => {
 
 module.exports = {
   createGame,
+  getRecentGames,
   getAllGames,
   getGame,
   deleteGame,
