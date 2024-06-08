@@ -12,7 +12,7 @@ const GameList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const pageNum = searchParams.get("p") || 0;
+    const pageNum = searchParams.get("p") || 1;
     fetch(
       `https://tic-tac-toe-backend-server.vercel.app/api/games/all?p=${pageNum}`
     )
@@ -36,7 +36,7 @@ const GameList = () => {
   return (
     <div className="games">
       <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
-        Recent Games
+        Game History
       </h2>
       {isLoading ? (
         <>
@@ -78,9 +78,10 @@ const GameList = () => {
                 </ul>
               </div>
             ))}
-            <div>
+            <hr style={{margin: "20px 0"}} />
+            <div className="pages">
               {totalPages.map(page => (
-                <Link to={`/history?p=${page + 1}`} key={page}>{page + 1}</Link>
+                <a href={`/history?p=${page + 1}`} key={page}>{page + 1}</a>
               ))}
             </div>
         </>

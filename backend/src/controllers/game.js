@@ -29,11 +29,11 @@ const getRecentGames = async (req, res) => {
 
 const getAllGames = async (req, res) => {
   const page = req.query.p || 0;
-  const gamesPerPage = 7;
+  const gamesPerPage = 5;
 
   try {
     const games = await Game.find();
-    
+
     const totalPages = Math.ceil(games.length / gamesPerPage);
     const startIndex = (page - 1) * gamesPerPage;
     const endIndex = page * gamesPerPage;

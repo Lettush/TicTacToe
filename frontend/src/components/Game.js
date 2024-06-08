@@ -230,7 +230,7 @@ const Game = () => {
             type="text"
             ref={playerOneElement}
             id="playerOne"
-            placeholder="XXXXX"
+            placeholder="X"
             max="15"
             required
           />

@@ -128,6 +128,31 @@ nav div a {
   background-color: #36475e;
 }
 
+/* Game History */
+.pages {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  gap: 10px;
+}
+
+.pages a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  border: 1px solid var(--primary);
+  text-align: center;
+  transition: all 0.12s ease;
+}
+
+.pages a:hover {
+  background-color: var(--primary);
+  color: var(--bg-color);
+}
+
 /* Inputs */
 form {
   display: flex;
