@@ -32,7 +32,7 @@ const getAllGames = async (req, res) => {
   const gamesPerPage = 5;
 
   try {
-    const games = await Game.find();
+    const games = await Game.find().sort({createdAt: -1});
 
     const totalPages = Math.ceil(games.length / gamesPerPage);
     const startIndex = (page - 1) * gamesPerPage;
