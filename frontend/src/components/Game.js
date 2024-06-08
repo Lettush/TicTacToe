@@ -136,7 +136,7 @@ const Game = () => {
         ? playerOneElement.current.value
         : "X",
       playerTwoName: playerTwoElement.current.value
-        ? playerOneElement.current.value
+        ? playerTwoElement.current.value
         : "O",
     });
     setRegistered(true);
@@ -230,7 +230,8 @@ const Game = () => {
             type="text"
             ref={playerOneElement}
             id="playerOne"
-            placeholder="X"
+            placeholder="XXXXX"
+            max="15"
             required
           />
           <label htmlFor="playerTwo">Player 2</label>
@@ -239,6 +240,7 @@ const Game = () => {
             ref={playerTwoElement}
             id="playerTwo"
             placeholder="O"
+            max="15"
             required
           />
           <button type="button" onClick={setNames}>

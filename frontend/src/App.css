@@ -198,8 +198,8 @@ form button:hover {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 20rem;
-  font-size: 1.25rem;
+  max-width: 40rem;
+  font-size: 1.2rem;
   background-color: var(--bg-color);
   margin: 3rem auto;
   border-radius: 0.5rem;
@@ -209,7 +209,7 @@ form button:hover {
 .scoreboard span {
   width: 100%;
   text-align: center;
-  padding: 1rem 0rem;
+  padding: 1.25rem 0rem;
 }
 
 .scoreboard span:nth-child(1) {
@@ -227,6 +227,28 @@ form button:hover {
   color: #4993f4;
   border-bottom: 5px solid #4993f4;
   border-radius: 0rem 0.5rem 0.5rem 0rem;
+}
+
+
+@media screen and (max-width: 800px) {
+  .scoreboard {
+    flex-direction: column;
+    max-width: 400px;
+    width: 80vw;
+    margin: 0 auto 50px;
+  }
+
+  .scoreboard span {
+    padding: 10px;
+  }
+
+  .scoreboard span:nth-child(1) {
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+  }
+
+  .scoreboard span:nth-child(3) {
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
+  }
 }
 
 /* Buttons */
