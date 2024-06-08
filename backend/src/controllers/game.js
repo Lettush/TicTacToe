@@ -28,8 +28,11 @@ const getRecentGames = async (req, res) => {
 };
 
 const getAllGames = async (req, res) => {
+  const page = req.query.p || 0;
+  const gamesPerPage = 7;
+
   try {
-    const games = await Game.find();
+    const games = await Game.find().skip(page * gamesPerPage).limit(gamesPerPage);
 
     res.status(200).json(games);
   } catch (error) {

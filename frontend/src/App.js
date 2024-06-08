@@ -12,6 +12,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Game from "./components/Game";
 import Home from "./components/Home";
+import GameList from "./components/GameList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/history" element={<GameList />} />
           <Route path="/game" element={<Game />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

@@ -22,9 +22,12 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Link to="/game">Start New Game</Link>
+      <Link to="/game" className="start">Start New Game</Link>
       <div className="games">
-        <h2>Recent Games</h2>
+        <div className="game-header">
+          <h2>Recent Games</h2>
+          <Link to="/history">See All {">>"}</Link>
+        </div>
         {isLoading ? (
           <>
             <Box
