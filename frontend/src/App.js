@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar";
 import Game from "./components/Game";
 import Home from "./components/Home";
 import GameList from "./components/GameList";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/game" element={<Game />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

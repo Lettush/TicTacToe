@@ -19,6 +19,7 @@
 }
 
 body {
+  min-height: 100dvh;
   background: rgb(0, 0, 0);
   background: linear-gradient(
     180deg,
@@ -265,7 +266,6 @@ form button:hover {
   border-radius: 0rem 0.5rem 0.5rem 0rem;
 }
 
-
 @media screen and (max-width: 800px) {
   .scoreboard {
     flex-direction: column;
@@ -312,3 +312,29 @@ form button:hover {
   color: var(--bg-color);
 }
 
+/* Footer */
+body {
+  position: relative;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 50px;
+  margin-top: 30px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  background-color: var(--primary);
+  box-shadow: 0 -5px 6px var(--shadow);
+}
+
+footer p {
+  color: var(--bg-color);
+  text-align: center;
+}
