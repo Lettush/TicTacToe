@@ -32,9 +32,14 @@ const getAllGames = async (req, res) => {
   const gamesPerPage = 7;
 
   try {
-    const games = await Game.find().skip(page * gamesPerPage).limit(gamesPerPage);
+    const games = await Game.find();
+    
+    const totalPages = Math.ceil(games.length / gamesPerPage);
+    const startIndex = (page - 1) * gamesPerPage;
+    const endIndex = page * gamesPerPage;
+    const paginatedData = games.slice(startIndex, endIndex);
 
-    res.status(200).json(games);
+    res.status(200).json({ totalPages, paginatedData });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

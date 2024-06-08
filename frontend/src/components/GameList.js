@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 // MUI
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const GameList = () => {
   const [games, setGames] = useState([]);
+  const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const pageNum = searchParams.get("p") || 0;
@@ -19,10 +21,17 @@ const GameList = () => {
         else return response.json();
       })
       .then((data) => {
-        setGames(data);
-        setIsLoading(!isLoading);
+        if (data.length === 0) {
+          navigate("/");
+        } else {
+          setGames(data.paginatedData);
+          setPages(data.totalPages);
+          setIsLoading(!isLoading);
+        }
       });
   }, []);
+
+  const totalPages = [...Array(pages).keys()];
 
   return (
     <div className="games">
@@ -69,6 +78,11 @@ const GameList = () => {
                 </ul>
               </div>
             ))}
+            <div>
+              {totalPages.map(page => (
+                <Link to={`/history?p=${page + 1}`} key={page}>{page + 1}</Link>
+              ))}
+            </div>
         </>
       )}
     </div>
